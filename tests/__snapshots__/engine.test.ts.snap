@@ -1,0 +1,26 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`compile timing and layout > produces identical compiled timeline from identical inputs and matches snapshot 1`] = `
+[
+  {
+    "boxes": [
+      {
+        "height": 77,
+        "id": "a",
+        "width": 323.77,
+        "x": 198.115,
+        "y": 579.5,
+      },
+      {
+        "height": 42,
+        "id": "b",
+        "width": 161.08,
+        "x": 279.46,
+        "y": 678.5,
+      },
+    ],
+    "duration": 137,
+    "id": "s1",
+  },
+]
+`;

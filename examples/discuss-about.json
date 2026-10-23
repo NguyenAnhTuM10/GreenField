@@ -1,0 +1,81 @@
+{
+  "schemaVersion":"1.0",
+  "id":"discuss_about_01",
+  "title":"Bạn đang nói sai discuss about?",
+  "style":"darkEditorial",
+  "width":720,"height":1280,"fps":30,"seed":12345,
+  "scenes":[
+    {
+      "id":"hook","beat":"hook","purpose":"Tạo tò mò về lỗi quen thuộc",
+      "narration":{"text":"Bạn có từng nói câu này bằng tiếng Anh không? We're going to discuss about it.","language":"vi"},
+      "pacing":"normal","pauseIntent":"none","hold":"normal","layout":"focus",
+      "objects":[
+        {"id":"hook_question","kind":"text","role":"primary","props":{"text":"BẠN CÓ TỪNG NÓI THẾ NÀY?","size":"lg","color":"accent","weight":"bold","align":"center"}},
+        {"id":"hook_mistake","kind":"text","role":"primary","cue":"afterObject:hook_question","props":{"text":"We're going to discuss about it.","size":"lg","color":"foreground","weight":"bold","align":"center"}},
+        {"id":"hook_scribble","kind":"path","role":"annotation","cue":"afterObject:hook_mistake","props":{"symbol":"underline","color":"danger","size":"md"}}
+      ],
+      "relations":[{"from":"hook_question","to":"hook_mistake","kind":"above"}],
+      "techniques":[{"id":"hook_pop","kind":"transform","targetIds":["hook_question"],"params":{"motion":"rise"}},{"id":"hook_draw","kind":"draw","targetIds":["hook_scribble"],"cue":"afterObject:hook_mistake","params":{"speed":"normal"}}]
+    },
+    {
+      "id":"predict","beat":"engage","purpose":"Cho người xem tự trả lời",
+      "narration":{"text":"Theo bạn, discuss có cần about không? Thử đoán trước khi xem đáp án nhé.","language":"vi"},
+      "pacing":"slow","pauseIntent":"speak","hold":"short","layout":"stack",
+      "objects":[
+        {"id":"predict_intro","kind":"text","role":"primary","props":{"text":"DISCUSS CÓ CẦN ABOUT?","size":"xl","color":"foreground","align":"center","weight":"bold"}},
+        {"id":"predict_choice","kind":"text","role":"support","cue":"afterObject:predict_intro","props":{"text":"THỬ TRẢ LỜI TRƯỚC KHI XEM ĐÁP ÁN","size":"md","color":"muted","weight":"normal","align":"center"}},
+        {"id":"predict_timer","kind":"text","role":"primary","cue":"onNarrationEnd","props":{"text":"3","size":"xl","color":"accent","align":"center","weight":"bold"}}
+      ],"relations":[],
+      "techniques":[{"id":"predict_count","kind":"count","durationIntent":"interaction","targetIds":["predict_timer"],"cue":"onNarrationEnd","params":{"from":3,"to":0,"suffix":""}}]
+    },
+    {
+      "id":"correction","beat":"explain","purpose":"Phân biệt cách nói sai và đúng",
+      "narration":{"text":"Không dùng discuss about. Discuss là ngoại động từ trong cách dùng này, nên nói discuss the issue.","language":"vi"},
+      "pacing":"normal","pauseIntent":"none","hold":"long","layout":"split",
+      "objects":[
+        {"id":"wrong_text","kind":"text","role":"primary","props":{"text":"discuss about the issue","size":"lg","color":"danger","align":"center","weight":"bold"}},
+        {"id":"right_text","kind":"text","role":"primary","cue":"afterObject:wrong_text","props":{"text":"discuss the issue","size":"lg","color":"success","align":"center","weight":"bold"}}
+      ],"relations":[{"from":"wrong_text","to":"right_text","kind":"beside"}],
+      "techniques":[
+        {"id":"wrong_frame","kind":"compare","targetIds":["wrong_text"],"params":{"tone":"danger"}},
+        {"id":"right_frame","kind":"compare","targetIds":["right_text"],"cue":"afterObject:wrong_text","params":{"tone":"success"}},
+        {"id":"right_underline","kind":"highlight","targetIds":["right_text"],"cue":"afterObject:wrong_text","params":{"color":"accent","variant":"underline"}}
+      ]
+    },
+    {
+      "id":"build_sentence","beat":"explain","purpose":"Xây câu ngắn rồi nối câu bằng because",
+      "narration":{"text":"Bây giờ dùng ngay nhé. Discuss this issue. We should discuss this issue. We should discuss this issue because it affects many students.","language":"en"},
+      "pacing":"slow","pauseIntent":"none","hold":"long","layout":"stack",
+      "objects":[
+        {"id":"step_one","kind":"text","role":"primary","props":{"text":"discuss this issue","size":"md","color":"muted","align":"center","weight":"bold"}},
+        {"id":"arrow_one","kind":"arrow","role":"annotation","cue":"afterObject:step_one","props":{"direction":"down","size":"sm","color":"accent"}},
+        {"id":"step_two","kind":"text","role":"primary","cue":"afterObject:arrow_one","props":{"text":"We should discuss this issue.","size":"md","color":"foreground","align":"center","weight":"bold"}},
+        {"id":"arrow_two","kind":"arrow","role":"annotation","cue":"afterObject:step_two","props":{"direction":"down","size":"sm","color":"accent"}},
+        {"id":"step_three","kind":"text","role":"primary","cue":"afterObject:arrow_two","props":{"text":"We should discuss this issue because it affects many students.","size":"md","color":"accent","align":"center","weight":"bold"}}
+      ],"relations":[],
+      "techniques":[{"id":"arrows_draw","kind":"draw","targetIds":["arrow_one","arrow_two"],"params":{"speed":"normal"}},{"id":"last_reveal","kind":"reveal","targetIds":["step_three"],"cue":"afterObject:step_two","params":{"direction":"left"}}]
+    },
+    {
+      "id":"variations","beat":"explain","purpose":"Ba cấu trúc tiếng Anh gần nghĩa",
+      "narration":{"text":"Bạn cũng có thể nói talk about an issue, hoặc have a discussion about an issue. Chú ý danh từ discussion đi được với about.","language":"vi"},
+      "pacing":"normal","pauseIntent":"none","hold":"long","layout":"diagram","diagramVariant":"columns",
+      "objects":[
+        {"id":"variation_a","kind":"text","role":"support","props":{"text":"discuss an issue","size":"sm","color":"accent","align":"center","weight":"bold"}},
+        {"id":"variation_b","kind":"text","role":"support","cue":"afterObject:variation_a","props":{"text":"talk about an issue","size":"sm","color":"foreground","align":"center","weight":"bold"}},
+        {"id":"variation_c","kind":"text","role":"support","cue":"afterObject:variation_b","props":{"text":"have a discussion about an issue","size":"sm","color":"foreground","align":"center","weight":"bold"}}
+      ],"relations":[],
+      "techniques":[{"id":"variations_highlight","kind":"highlight","targetIds":["variation_a","variation_b","variation_c"],"params":{"color":"accent","variant":"underline"}}]
+    },
+    {
+      "id":"recall","beat":"engage","purpose":"Yêu cầu tự nói lại mà không nhìn đáp án",
+      "narration":{"text":"Bây giờ đến lượt bạn! Hãy nói bằng tiếng Anh: Chúng ta nên thảo luận vấn đề này vì nó ảnh hưởng đến nhiều sinh viên.","language":"vi"},
+      "pacing":"slow","pauseIntent":"recall","hold":"long","layout":"focus",
+      "objects":[
+        {"id":"recall_title","kind":"text","role":"primary","props":{"text":"ĐẾN LƯỢT BẠN!","size":"xl","color":"accent","align":"center","weight":"bold"}},
+        {"id":"recall_prompt","kind":"text","role":"primary","cue":"afterObject:recall_title","props":{"text":"Chúng ta nên thảo luận vấn đề này vì nó ảnh hưởng đến nhiều sinh viên.","size":"md","color":"foreground","align":"center","weight":"bold"}},
+        {"id":"recall_path","kind":"path","role":"annotation","cue":"afterObject:recall_prompt","props":{"symbol":"wave","size":"md","color":"accent"}}
+      ],"relations":[],
+      "techniques":[{"id":"recall_draw","kind":"draw","targetIds":["recall_path"],"params":{"speed":"slow"}},{"id":"recall_pop","kind":"transform","targetIds":["recall_title"],"params":{"motion":"pop"}}]
+    }
+  ]
+}
