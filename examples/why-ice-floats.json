@@ -1,0 +1,535 @@
+{
+  "schemaVersion": "1.0",
+  "id": "why_ice_floats_01",
+  "title": "Vì sao nước đá nổi?",
+  "style": "whiteboard",
+  "width": 720,
+  "height": 1280,
+  "fps": 30,
+  "seed": 4921,
+  "scenes": [
+    {
+      "id": "ice_hook",
+      "beat": "hook",
+      "purpose": "Khơi gợi nghịch lý nước đá nổi",
+      "narration": {
+        "text": "Cùng là H hai O, tại sao nước đá lại nổi trên nước lỏng?",
+        "language": "vi"
+      },
+      "pacing": "normal",
+      "pauseIntent": "none",
+      "hold": "long",
+      "layout": "focus",
+      "objects": [
+        {
+          "id": "hook_title",
+          "kind": "text",
+          "role": "primary",
+          "cue": "onEnter",
+          "props": {
+            "text": "VÌ SAO NƯỚC ĐÁ NỔI?",
+            "size": "lg",
+            "color": "accent",
+            "align": "center",
+            "weight": "bold"
+          }
+        },
+        {
+          "id": "ice_glass",
+          "kind": "image",
+          "role": "primary",
+          "cue": "afterObject:hook_title",
+          "props": {
+            "src": "/assets/ice-in-water.svg",
+            "fit": "contain",
+            "size": "lg"
+          }
+        },
+        {
+          "id": "hook_wave",
+          "kind": "path",
+          "role": "annotation",
+          "cue": "afterObject:ice_glass",
+          "props": {
+            "symbol": "wave",
+            "size": "sm",
+            "color": "accent"
+          }
+        }
+      ],
+      "relations": [],
+      "techniques": [
+        {
+          "id": "hook_rise",
+          "kind": "transform",
+          "targetIds": [
+            "hook_title"
+          ],
+          "cue": "onEnter",
+          "durationIntent": "entrance",
+          "params": {
+            "motion": "rise"
+          }
+        },
+        {
+          "id": "glass_show",
+          "kind": "reveal",
+          "targetIds": [
+            "ice_glass"
+          ],
+          "cue": "afterObject:hook_title",
+          "durationIntent": "entrance",
+          "params": {
+            "direction": "left"
+          }
+        },
+        {
+          "id": "wave_draw",
+          "kind": "draw",
+          "targetIds": [
+            "hook_wave"
+          ],
+          "cue": "afterObject:ice_glass",
+          "durationIntent": "entrance",
+          "params": {
+            "speed": "slow"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ice_predict",
+      "beat": "engage",
+      "purpose": "Người xem dự đoán mạng phân tử",
+      "narration": {
+        "text": "Khi nước đóng băng, các phân tử xếp sít lại, hay hình thành cấu trúc mở? Hãy thử đoán.",
+        "language": "vi"
+      },
+      "pacing": "normal",
+      "pauseIntent": "think",
+      "hold": "short",
+      "layout": "split",
+      "objects": [
+        {
+          "id": "guess_a",
+          "kind": "text",
+          "role": "primary",
+          "cue": "onEnter",
+          "props": {
+            "text": "A. XẾP SÍT HƠN",
+            "size": "md",
+            "color": "danger",
+            "align": "center",
+            "weight": "bold"
+          }
+        },
+        {
+          "id": "guess_b",
+          "kind": "text",
+          "role": "primary",
+          "cue": "afterObject:guess_a",
+          "props": {
+            "text": "B. CẤU TRÚC MỞ HƠN",
+            "size": "md",
+            "color": "success",
+            "align": "center",
+            "weight": "bold"
+          }
+        }
+      ],
+      "relations": [
+        {
+          "from": "guess_a",
+          "to": "guess_b",
+          "kind": "beside"
+        }
+      ],
+      "techniques": [
+        {
+          "id": "left_border",
+          "kind": "compare",
+          "targetIds": [
+            "guess_a"
+          ],
+          "cue": "onEnter",
+          "durationIntent": "entrance",
+          "params": {
+            "tone": "danger"
+          }
+        },
+        {
+          "id": "right_border",
+          "kind": "compare",
+          "targetIds": [
+            "guess_b"
+          ],
+          "cue": "afterObject:guess_a",
+          "durationIntent": "entrance",
+          "params": {
+            "tone": "success"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ice_structure",
+      "beat": "explain",
+      "purpose": "Đối chiếu mô hình cấu trúc",
+      "narration": {
+        "text": "Ở nước đá thông thường, liên kết hiđrô hình thành mạng tinh thể có cấu trúc mở. Nước lỏng có thể xếp gần nhau hơn.",
+        "language": "vi"
+      },
+      "pacing": "normal",
+      "pauseIntent": "none",
+      "hold": "long",
+      "layout": "diagram",
+      "diagramVariant": "columns",
+      "objects": [
+        {
+          "id": "liquid_img",
+          "kind": "image",
+          "role": "primary",
+          "cue": "onEnter",
+          "props": {
+            "src": "/assets/water-dense.svg",
+            "fit": "contain",
+            "size": "lg"
+          }
+        },
+        {
+          "id": "ice_img",
+          "kind": "image",
+          "role": "primary",
+          "cue": "onEnter",
+          "props": {
+            "src": "/assets/ice-open.svg",
+            "fit": "contain",
+            "size": "lg"
+          }
+        },
+        {
+          "id": "liquid_label",
+          "kind": "text",
+          "role": "primary",
+          "cue": "onEnter",
+          "props": {
+            "text": "NƯỚC LỎNG",
+            "size": "sm",
+            "color": "foreground",
+            "align": "center",
+            "weight": "bold"
+          }
+        },
+        {
+          "id": "ice_label",
+          "kind": "text",
+          "role": "primary",
+          "cue": "onEnter",
+          "props": {
+            "text": "NƯỚC ĐÁ",
+            "size": "sm",
+            "color": "accent",
+            "align": "center",
+            "weight": "bold"
+          }
+        }
+      ],
+      "relations": [],
+      "techniques": [
+        {
+          "id": "liquid_reveal",
+          "kind": "reveal",
+          "targetIds": [
+            "liquid_img"
+          ],
+          "cue": "onEnter",
+          "durationIntent": "entrance",
+          "params": {
+            "direction": "left"
+          }
+        },
+        {
+          "id": "ice_reveal",
+          "kind": "reveal",
+          "targetIds": [
+            "ice_img"
+          ],
+          "cue": "afterObject:liquid_img",
+          "durationIntent": "entrance",
+          "params": {
+            "direction": "right"
+          }
+        },
+        {
+          "id": "ice_under",
+          "kind": "highlight",
+          "targetIds": [
+            "ice_label"
+          ],
+          "cue": "afterObject:ice_img",
+          "durationIntent": "entrance",
+          "params": {
+            "variant": "underline",
+            "color": "accent"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ice_density",
+      "beat": "explain",
+      "purpose": "Giải thích sự khác nhau về khối lượng riêng",
+      "narration": {
+        "text": "Khối lượng riêng của nước đá gần không phẩy chín hai gam trên xen ti mét khối, nhỏ hơn nước lỏng gần một gam trên xen ti mét khối.",
+        "language": "vi"
+      },
+      "pacing": "slow",
+      "pauseIntent": "none",
+      "hold": "long",
+      "layout": "stack",
+      "objects": [
+        {
+          "id": "density_caption",
+          "kind": "text",
+          "role": "primary",
+          "cue": "onEnter",
+          "props": {
+            "text": "CÙNG MỘT THỂ TÍCH",
+            "size": "md",
+            "color": "muted",
+            "align": "center",
+            "weight": "bold"
+          }
+        },
+        {
+          "id": "density_ice",
+          "kind": "text",
+          "role": "primary",
+          "cue": "afterObject:density_caption",
+          "props": {
+            "text": "ĐÁ: ≈ 0,92 g/cm³",
+            "size": "lg",
+            "color": "accent",
+            "align": "center",
+            "weight": "bold"
+          }
+        },
+        {
+          "id": "density_water",
+          "kind": "text",
+          "role": "primary",
+          "cue": "afterObject:density_ice",
+          "props": {
+            "text": "NƯỚC: ≈ 1,00 g/cm³",
+            "size": "lg",
+            "color": "foreground",
+            "align": "center",
+            "weight": "bold"
+          }
+        },
+        {
+          "id": "density_takeaway",
+          "kind": "text",
+          "role": "primary",
+          "cue": "afterObject:density_water",
+          "props": {
+            "text": "ĐÁ CÓ KHỐI LƯỢNG RIÊNG THẤP HƠN",
+            "size": "md",
+            "color": "success",
+            "align": "center",
+            "weight": "bold"
+          }
+        }
+      ],
+      "relations": [],
+      "techniques": [
+        {
+          "id": "density_compare",
+          "kind": "highlight",
+          "targetIds": [
+            "density_ice"
+          ],
+          "cue": "afterObject:density_caption",
+          "durationIntent": "entrance",
+          "params": {
+            "variant": "underline",
+            "color": "accent"
+          }
+        },
+        {
+          "id": "density_reveal",
+          "kind": "reveal",
+          "targetIds": [
+            "density_takeaway"
+          ],
+          "cue": "afterObject:density_water",
+          "durationIntent": "entrance",
+          "params": {
+            "direction": "left"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ice_buoyancy",
+      "beat": "explain",
+      "purpose": "Giải thích lực đẩy nổi",
+      "narration": {
+        "text": "Viên đá nổi vì khối lượng riêng thấp hơn nước. Khi nổi cân bằng, lực đẩy Ác si mét bằng trọng lượng của viên đá.",
+        "language": "vi"
+      },
+      "pacing": "normal",
+      "pauseIntent": "none",
+      "hold": "long",
+      "layout": "focus",
+      "objects": [
+        {
+          "id": "buoyancy_title",
+          "kind": "text",
+          "role": "primary",
+          "cue": "onEnter",
+          "props": {
+            "text": "VÌ SAO LẠI NỔI?",
+            "size": "lg",
+            "color": "accent",
+            "align": "center",
+            "weight": "bold"
+          }
+        },
+        {
+          "id": "buoyancy_drawing",
+          "kind": "image",
+          "role": "primary",
+          "cue": "afterObject:buoyancy_title",
+          "props": {
+            "src": "/assets/ice-forces.svg",
+            "fit": "contain",
+            "size": "lg"
+          }
+        },
+        {
+          "id": "buoyancy_label",
+          "kind": "text",
+          "role": "primary",
+          "cue": "afterObject:buoyancy_drawing",
+          "props": {
+            "text": "LỰC ĐẨY = TRỌNG LƯỢNG",
+            "size": "md",
+            "color": "foreground",
+            "align": "center",
+            "weight": "bold"
+          }
+        }
+      ],
+      "relations": [],
+      "techniques": [
+        {
+          "id": "force_reveal",
+          "kind": "reveal",
+          "targetIds": [
+            "buoyancy_drawing"
+          ],
+          "cue": "afterObject:buoyancy_title",
+          "durationIntent": "entrance",
+          "params": {
+            "direction": "up"
+          }
+        },
+        {
+          "id": "force_highlight",
+          "kind": "highlight",
+          "targetIds": [
+            "buoyancy_label"
+          ],
+          "cue": "afterObject:buoyancy_drawing",
+          "durationIntent": "entrance",
+          "params": {
+            "variant": "underline",
+            "color": "accent"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ice_recall",
+      "beat": "engage",
+      "purpose": "Tự giải thích hiện tượng",
+      "narration": {
+        "text": "Đến lượt bạn. Hãy dùng hai ý: cấu trúc mở và khối lượng riêng, để giải thích vì sao nước đá nổi.",
+        "language": "vi"
+      },
+      "pacing": "slow",
+      "pauseIntent": "recall",
+      "hold": "long",
+      "layout": "stack",
+      "objects": [
+        {
+          "id": "recall_heading",
+          "kind": "text",
+          "role": "primary",
+          "cue": "onEnter",
+          "props": {
+            "text": "ĐẾN LƯỢT BẠN",
+            "size": "lg",
+            "color": "accent",
+            "align": "center",
+            "weight": "bold"
+          }
+        },
+        {
+          "id": "recall_question",
+          "kind": "text",
+          "role": "primary",
+          "cue": "afterObject:recall_heading",
+          "props": {
+            "text": "VÌ SAO NƯỚC ĐÁ NỔI?",
+            "size": "lg",
+            "color": "foreground",
+            "align": "center",
+            "weight": "bold"
+          }
+        },
+        {
+          "id": "recall_hint",
+          "kind": "text",
+          "role": "primary",
+          "cue": "onNarrationEnd",
+          "props": {
+            "text": "GỢI Ý: CẤU TRÚC MỞ → KHỐI LƯỢNG RIÊNG",
+            "size": "sm",
+            "color": "muted",
+            "align": "center",
+            "weight": "bold"
+          }
+        }
+      ],
+      "relations": [],
+      "techniques": [
+        {
+          "id": "recall_pop",
+          "kind": "transform",
+          "targetIds": [
+            "recall_question"
+          ],
+          "cue": "afterObject:recall_heading",
+          "durationIntent": "entrance",
+          "params": {
+            "motion": "pop"
+          }
+        },
+        {
+          "id": "recall_reveal",
+          "kind": "reveal",
+          "targetIds": [
+            "recall_hint"
+          ],
+          "cue": "onNarrationEnd",
+          "durationIntent": "entrance",
+          "params": {
+            "direction": "left"
+          }
+        }
+      ]
+    }
+  ]
+}
